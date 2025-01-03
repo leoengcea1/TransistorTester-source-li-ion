@@ -27,9 +27,9 @@ void Battery_check(void) {
   #if FLASHEND > 0x1fff
           DC_Pwr_mode = 0;
    #ifdef DC_PWR
-          if ((bat_voltage < 900) || (bat_voltage > DC_PWR))
+          if ((bat_voltage < 435) || (bat_voltage > DC_PWR))
    #else
-          if (bat_voltage < 900) 
+          if (bat_voltage < 435) 
    #endif
           {
              // no battery present, don't check,
@@ -45,32 +45,24 @@ void Battery_check(void) {
  #else    /* without battery voltage output */
     lcd_MEM_string(Bat_str);		//output: "Bat. "
  #endif  /* BAT_OUT */
- #if (BAT_POOR > 12000)
-   #warning "Battery POOR level is set very high!"
- #endif
- #if (BAT_POOR < 2500)
-   #warning "Battery POOR level is set very low!"
- #endif
- #if (BAT_POOR > 5300)
-  // use .8 V difference to Warn-Level
-  #define WARN_LEVEL (((unsigned long)(BAT_POOR+800)*(unsigned long)BAT_DENOMINATOR)/BAT_NUMERATOR)
- #elif (BAT_POOR > 3249)
-  // less than 5.4 V only .4V difference to Warn-Level
-  #define WARN_LEVEL (((unsigned long)(BAT_POOR+400)*(unsigned long)BAT_DENOMINATOR)/BAT_NUMERATOR)
- #elif (BAT_POOR > 1299)
-  // less than 2.9 V only .2V difference to Warn-Level
-  #define WARN_LEVEL (((unsigned long)(BAT_POOR+200)*(unsigned long)BAT_DENOMINATOR)/BAT_NUMERATOR)
- #else
-  // less than 1.3 V only .1V difference to Warn-Level
-  #define WARN_LEVEL (((unsigned long)(BAT_POOR+100)*(unsigned long)BAT_DENOMINATOR)/BAT_NUMERATOR)
- #endif
- #define POOR_LEVEL (((unsigned long)(BAT_POOR)*(unsigned long)BAT_DENOMINATOR)/BAT_NUMERATOR)
+
+BAT_POOR = 350;	
+
+//    #warning "Battery POOR level is set very low!" or anthing, weel just how much is set
+#pragma message "Battery POOR level is set to:" STR(BAT_POOR)
+	
+  //set  .2V difference to Warn-Level . u can change for 0.1 or anthing
+ define WARN_LEVEL (((unsigned long)(BAT_POOR+200)*(unsigned long)BAT_DENOMINATOR)/BAT_NUMERATOR)
+
+
+	
+ define POOR_LEVEL (((unsigned long)(BAT_POOR)*(unsigned long)BAT_DENOMINATOR)/BAT_NUMERATOR)
 
   // check the battery voltage
   if (bat_adc <  WARN_LEVEL) {
-     //Vcc < 7,3V; show Warning 
+     //Vcc < 7,3V; show Warning  . 3.7v
      if(bat_adc < POOR_LEVEL) {	
-	//Vcc <6,3V; no proper operation is possible
+	//Vcc <6,3V; no proper operation is possible . will define at 3,5v
 	lcd_MEM_string(BatEmpty);	//Battery empty!
         lcd_clear_line();			// clear to end of line
 	lcd_refresh();			// write the pixels to display, ST7920 only
