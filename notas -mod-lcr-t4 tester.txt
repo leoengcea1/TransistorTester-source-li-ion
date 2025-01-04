@@ -1,0 +1,28 @@
+notes ,. 
+
+li-ion 3,6-4,2 
+
+atmega work on 2.7 -5.5 ok 
+
+vref tl431 , need minimun 0.4 ma . at 5v 2k2 about 1ma ,
+at minimum 3,6v -2,5ref = 1,1v in a 2k2 res so 0,5mA - ok too dont need to reduce resistor http://www.datasheet.hk/view_online.php?id=1289171&file=0155\tl431xn3_1325802.pdf esse an menos ainda com 100uA minimo ja ta no vref
+
+LX-12864B
+lcd controleer says in datasheet 
+Item Symbol Condition Min. Typ. Max. UnitPower Supply for Logic VDD-VSS --- 3.14 3.3 3.47Volt
+
+but its taking 5v - 2 1n4148 , i measured 0,62 each 1,2v both so they are taking 3,7-3,8v in the board .
+
+leave only 1 diode it shold take 3,14 with battery at 3,76
+ 3,6 at 4,2 but its old battery only charge to 4-4,1v
+ 
+ ICSP2 conector . ICSP is for "In Circuit Serial Programming" (and debugging) . so if i conect smt there to debug or flash the ic keep in ming it will have only 4v
+ 
+ those button to turn on and BL . 33k +1k = 34k
+ at 7v 0.205mA . at 3,7 ~0,109mA .
+ at 9v 0,264     at 4,1  ,120
+ medido BL mulytimetro 2,6 ou 3.2v usa uns 600uA
+ 
+ 
+ . tirando vReg direto diz q bateria baixa e shutdon . pra nao ter mais trbalho de programar  troqueio o res de 10k por um de 3k3 pra dar o bodro da tensao no modidor bat ,  
+ it worked , good enough done, finished.
