@@ -24,5 +24,6 @@ leave only 1 diode it shold take 3,14 with battery at 3,76
  medido BL mulytimetro 2,6 ou 3.2v usa uns 600uA
  
  
- . tirando vReg direto diz q bateria baixa e shutdon . pra nao ter mais trbalho de programar  troqueio o res de 10k por um de 3k3 pra dar o bodro da tensao no modidor bat ,  
- it worked , good enough done, finished.
+ . tirando vReg direto diz q bateria baixa e shutdon . pra nao ter mais trbalho de programar  troqueio o res de 10k por um de 3k3 pra dar o bodro da tensao no modidor bat , ()e tb pq soldar o res smd tiny ta um parto so dar bypass nele mesmo ) 
+ it worked , good enough. done! finished. 
+just solder the battery and make new case.
